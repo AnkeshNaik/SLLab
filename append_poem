@@ -1,0 +1,20 @@
+# Open a file with access mode 'a'
+file_object = open('new1.txt', 'a')
+ 
+# Append 'poem' at the end of file
+
+file_object.write('''Over the land there lies a long shadow,
+westward reaching wings of darkness.
+The Tower trembles; to the tombs of kings
+doom approaches. The Dead awaken;
+for the hour is come for the oathbreakers:
+at the Stone of Erech they shall stand again
+and hear there a horn in the hills ringing.
+Whose shall the horn be? Who shall call them
+from the grey twilight, the forgotten people?
+The heir of him to whom the oath they swore.
+From the North shall he come, need shall drive him:
+he shall pass the Door to the Paths of the Dead. ''')
+ 
+# Close the file
+file_object.close()
