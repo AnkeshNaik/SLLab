@@ -1,0 +1,9 @@
+
+a_file = open("new1.txt","r")
+
+number_of_lines = int(input("enter n lines"))
+
+
+for i in range(number_of_lines):
+    line = a_file.readline()
+    print(line)
