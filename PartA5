@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript </h1>
+<h2>String operations</h2>
+
+<p id="demo1"></p>
+<p id="demo2"></p>
+<script>
+var str1= prompt("Please enter your string to capitalize vowels");
+document.getElementById("demo1").innerHTML = myFunction(str1);
+var str2= prompt("Please enter your string to move to next alphabet right shift");
+document.getElementById("demo2").innerHTML = LetterChanges(str2,1);
+
+function myFunction(str) {
+let vowels = ['a', 'e', 'i', 'o', 'u'];
+let temp = "";
+for(let chars of str){
+     if(vowels.includes(chars)){
+       temp += chars.toUpperCase();
+    }
+    else{
+     temp += chars;
+     }
+}
+
+return temp;
+}
+
+function LetterChanges(str,step) {
+   
+    var res="";
+step=step%26; //make sure the step is in range
+for(var i=0,j=str.length;i<j;i++){
+    var nextCode=str.charCodeAt(i)+step;
+    if(nextCode>122){
+        nextCode=96+(nextCode-123+1);
+    }
+    res+=String.fromCharCode(nextCode);
+}
+return res;
+}
+
+
+</script>
+
+</body>
+</html>
