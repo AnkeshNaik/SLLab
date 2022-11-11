@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+        body {
+            background-image: url("https://img.freepik.com/free-vector/doodles-background-bakery_125540-632.jpg?w=2000");
+            background-size: cover;
+            opacity: inherit;
+
+        }
+
+        button {
+            background-color: aquamarine;
+            border-radius: 05px;
+            font-weight: bold;
+            font-size: large;
+        }
+        /* #a{
+            position: absolute;
+            bottom: 75%;
+            right: 50%;
+            font-weight: bold;
+            font-size: large;
+            
+        } */
+
+        h3 {
+            opacity: 1;
+            /* position: absolute; */
+            width: 100%;
+            color: #fff;
+            left: 0;
+            bottom: 100;
+            top: 1;
+            padding: 0.75em 1em;
+            font-weight: 700;
+            z-index: 2;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            background-color: rgba(211, 20, 20, 0.7);
+            border-radius: 5%;
+            -webkit-transition: opacity .3s ease-in-out;
+            transition: opacity .3s ease-in-out;
+        }
+
+        p {
+
+            /* position: absolute; */
+            bottom: 20px;
+            right: 20px;
+
+            font-weight: bold;
+            color: white;
+            padding-left: 10px;
+            padding-right: 10px;
+
+
+        }
+
+
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 20px;
+            background-color: rgb(248, 219, 89);
+            border-radius: 0.8;
+        }
+
+        .products {
+            display: flex;
+            justify-content: center;
+            background-color: beige;
+        }
+
+        .product {
+            width: 300px;
+            border: 2px solid greenyellow;
+            margin: 10px;
+            padding: 10px;
+            background-color: aliceblue;
+            border-radius: 5%;
+
+        }
+        a{
+            color: red;
+        }
+
+        .added {
+            color: white;
+            background-color: red;
+        }
+
+        #Burger {
+            background-image: url("https://plus.unsplash.com/premium_photo-1663036906556-584d90b7a6a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60");
+            background-size: cover;
+            position: absolute;
+            bottom: 5%;
+            right: 10%;
+            font-size: 21px;
+        }
+
+        #Pizza {
+            background-image: url("https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+            background-size: cover;
+            position: absolute;
+            bottom: 5%;
+            left: 10%;
+            font-size: 21px;
+            ;
+
+
+        }
+
+        #Donut {
+            background-image: url("https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80");
+            background-size: cover;
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            font-size: 21px;
+
+
+        }
+
+        #Past {
+            background-image: url("https://static.toiimg.com/photo/64463630.cms");
+            background-size: cover;
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            font-size: 21px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="toolbar">
+        <h1 class="brand">Bakery</h1>
+        <p>
+            <a>
+                Cart items:
+                <span id="count">0</span>,
+                Price:
+                <span id="sum">0</span>
+                <button type="button" id="a" onClick="fun()">Reset Cart</button>
+            </a>
+         
+        </p>
+        
+    </div>
+
+    <!-- <div class="products"> -->
+    <div id="Burger" class="product">
+        <h3>Burger</h3>
+        <p>Price: 200</p>
+        <button data-id="1" data-price="200" data-title="Burger">Add to cart</button>
+    </div>
+
+    <div id="Pizza" class="product">
+        <h3>Pizza</h3>
+        <p>Price: 300</p>
+        <button data-id="2" data-price="300" data-title="Pizza">Add to cart</button>
+    </div>
+
+    <div id="Donut" class="product">
+        <h3>Donuts</h3>
+        <p>Price: 600</p>
+        <button data-id="3" data-price="600" data-title="Donuts">Add to cart</button>
+    </div>
+
+    <div id="Past" class="product">
+        <h3>Pastries</h3>
+        <p>Price: 100</p>
+        <button data-id="4" data-price="100" data-title="pastries">Add to cart</button>
+    </div>
+    <!-- </div> -->
+    <!-- <input type = "button" value = "Reset data" onClick = "fun()"/>   -->
+    
+    <script>
+
+
+        let count = 0;
+        let sum = 0;
+        let cart = {};
+
+        if (localStorage.getItem("count")) {
+            count = parseInt(localStorage.getItem("count"));
+        }
+
+        if (localStorage.getItem("sum")) {
+            sum = parseInt(localStorage.getItem("sum"));
+        }
+
+        if (localStorage.getItem("cart")) {
+            cart = JSON.parse(localStorage.getItem("cart"));
+        }
+
+        updateCart();
+
+        let btns = document.querySelectorAll(".product button");
+
+        for (let i = 0; i < btns.length; i++) {
+            let btn = btns[i];
+            btn.addEventListener("click", add);
+
+            // id = btn.dataset.id;
+            // if (cart.indexOf(id) >= 0) {
+            //     btn.className = "added";
+            //     btn.textContent = "Remove";
+            // }
+        }
+
+        function add(event) {
+            let price = Number(event.target.dataset.price);
+            let title = event.target.dataset.title;
+            let id = event.target.dataset.id;
+
+            if (id in cart) {
+                cart[id].qty++;
+            } else {
+                let cartItem = {
+                    title: title,
+                    price: price,
+                    qty: 1
+                };
+                cart[id] = cartItem
+            }
+
+            count++;
+            sum += price;
+
+            console.log(cart);
+
+            // let index = cart.indexOf(event.target.dataset.id);
+            // if (index >= 0) {
+            //     cart.splice(index, 1);
+            //     count--;
+            //     sum -= price;
+            //     event.target.className = "";
+            //     event.target.textContent = "Add to cart";
+            // } else {
+            //     cart.push(event.target.dataset.id);
+            //     count++;
+            //     sum += price;
+            //     event.target.className = "added";
+            //     event.target.textContent = "Remove";
+            // }
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCart();
+        }
+
+        function updateCart() {
+            document.getElementById("sum").textContent = sum;
+            document.getElementById("count").textContent = count;
+            localStorage.setItem("sum", sum);
+            localStorage.setItem("count", count);
+        }
+        function fun() {
+            localStorage.clear();
+            document.location.reload();
+        }
+
+    </script>
+</body>
+
+</html>
