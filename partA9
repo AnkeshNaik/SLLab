@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript </h1>
+<h2>String operations</h2>
+
+<p id="demo1"></p>
+<p id="demo2"></p>
+<script>
+
+var str2= prompt("Please enter your string to move to next alphabet right shift");
+document.getElementById("demo2").innerHTML = LetterChanges(str2,1);
+
+
+
+function LetterChanges(str) { 
+
+var arr = str.toLowerCase().split("");
+
+
+if(arr.length<3) return false;
+for (var i = 0; i < arr.length; i++) {
+
+
+  if (arr[i] >= "a" && arr[i] <= "z") {
+    if (i === 0 || i === arr.length) {
+      return false;
+    }
+    
+    if (arr[i-1] !== "+" || arr[i+1] !== "+") {
+      return false;
+    }
+  }
+}
+
+return true; 
+       
+}
+
+
+</script>
+
+</body>
+</html>
